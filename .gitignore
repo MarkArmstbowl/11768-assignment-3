@@ -10,3 +10,5 @@ wandb/
 # Zip-based submission artifacts (scripts/package_submission.py).
 submission*.zip
 submission/
+piazza.md
+quiz.md
