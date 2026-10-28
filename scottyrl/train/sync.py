@@ -166,8 +166,22 @@ class SyncTrainer:
 
         Returns: list of groups - one group (list of Trajectory) per sampled task.
         """
-        # TODO(student): implement this method.
-        raise NotImplementedError
+        tasks = self.rng.sample(self.train_tasks, self.cfg.tasks_per_batch)
+        agent_cls = self.agent_cls()
+        return list(
+            await asyncio.gather(
+                *(
+                    collect_group(
+                        policy,
+                        task,
+                        self.env_factory,
+                        self.cfg.group_size,
+                        agent_cls=agent_cls,
+                    )
+                    for task in tasks
+                )
+            )
+        )
 
     def build_batch(
         self, groups: list[list[Trajectory]]
@@ -179,8 +193,7 @@ class SyncTrainer:
         `groups_to_batch`. `train()` hands both to the given
         `record_training`, which merges `stats` into the step's record.
         """
-        # TODO(student): implement this method.
-        raise NotImplementedError
+        return groups_to_batch(groups, method=self.cfg.algo)
 
     async def update(self, seqs: list[TokenSequence]) -> dict:
         """Run one optimizer step on `seqs` through the session:
@@ -190,8 +203,12 @@ class SyncTrainer:
         `train()` hands it to the given `record_training`; do not log it
         here.
         """
-        # TODO(student): implement this method.
-        raise NotImplementedError
+        return await self.session.train_step(
+            seqs,
+            loss_fn=self.cfg.loss_fn,
+            lr=self.cfg.lr,
+            grad_clip_norm=self.cfg.grad_clip_norm,
+        )
 
     async def evaluate_now(self, policy) -> dict:
         """Held-out evaluation of `policy`: the first cfg.eval_tasks
@@ -202,8 +219,13 @@ class SyncTrainer:
         `record_evaluation` owns the "eval/" prefix and the logging; the
         entry script also calls this method for the step-0 baseline.
         """
-        # TODO(student): implement this method.
-        raise NotImplementedError
+        return await evaluate_policy(
+            policy,
+            self.val_tasks[: self.cfg.eval_tasks],
+            self.env_factory,
+            k=self.cfg.eval_k,
+            agent_cls=self.agent_cls(),
+        )
 
     # ------------------------------------------------------------- driver --
 
@@ -237,5 +259,21 @@ class SyncTrainer:
             you by scripts/train_sync.py before train() is called; you only
             handle the periodic evaluations.
         """
-        # TODO(student): implement this method.
-        raise NotImplementedError
+        policy = self.make_policy(await self.session.new_sampling_client("step_000000"))
+
+        for step in range(1, self.cfg.num_steps + 1):
+            groups = await self.collect_batch(policy)
+            sequences, batch_stats = self.build_batch(groups)
+
+            if sequences:
+                train_metrics = await self.update(sequences)
+                policy = self.make_policy(
+                    await self.session.new_sampling_client(f"step_{step:06d}")
+                )
+            else:
+                train_metrics = {}
+
+            self.record_training(step, groups, sequences, batch_stats, train_metrics)
+            if self.eval_due(step):
+                eval_metrics = await self.evaluate_now(policy)
+                self.record_evaluation(step, eval_metrics)
