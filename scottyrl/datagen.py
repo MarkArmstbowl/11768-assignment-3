@@ -32,8 +32,10 @@ def extension_suffix(accumulated: list[int], prompt_tokens: list[int]) -> list[i
         extension_suffix([1, 2, 3], [1, 2])          -> None
         extension_suffix([], [1, 2])                 -> [1, 2]  (an empty sequence is a prefix of anything)
     """
-    # TODO(student): implement this function.
-    raise NotImplementedError
+    prefix_length = len(accumulated)
+    if len(prompt_tokens) < prefix_length or prompt_tokens[:prefix_length] != accumulated:
+        return None
+    return prompt_tokens[prefix_length:]
 
 
 def stitch_trajectory(traj: Trajectory) -> list[TokenSequence]:
@@ -78,8 +80,51 @@ def stitch_trajectory(traj: Trajectory) -> list[TokenSequence]:
 
     Returns: list of TokenSequence (possibly empty).
     """
-    # TODO(student): implement this function.
-    raise NotImplementedError
+    sequences: list[TokenSequence] = []
+    tokens: list[int] = []
+    # Track provenance in token space first. Dropping position 0 on emission
+    # aligns these lists with targets=tokens[1:], even for an empty prompt.
+    action_mask: list[int] = []
+    sampling_logprobs: list[float] = []
+
+    def emit_sequence() -> None:
+        if len(tokens) < 2 or not any(action_mask[1:]):
+            return
+        sequences.append(
+            TokenSequence(
+                tokens=list(tokens),
+                mask=action_mask[1:],
+                logprobs=sampling_logprobs[1:],
+                advantages=[0.0] * (len(tokens) - 1),
+            )
+        )
+
+    for call in traj.calls:
+        if len(call.completion_tokens) != len(call.completion_logprobs):
+            raise ValueError(
+                "completion_tokens and completion_logprobs must have the same length"
+            )
+
+        suffix = extension_suffix(tokens, call.prompt_tokens)
+        if suffix is None:
+            emit_sequence()
+            tokens = []
+            action_mask = []
+            sampling_logprobs = []
+            suffix = call.prompt_tokens
+
+        # A matching prompt adds only new context, never a second copy of
+        # the preceding completions. An empty suffix is a valid extension.
+        tokens.extend(suffix)
+        action_mask.extend([0] * len(suffix))
+        sampling_logprobs.extend([0.0] * len(suffix))
+
+        tokens.extend(call.completion_tokens)
+        action_mask.extend([1] * len(call.completion_tokens))
+        sampling_logprobs.extend(call.completion_logprobs)
+
+    emit_sequence()
+    return sequences
 
 
 def trajectory_to_training_sequences(traj: Trajectory, advantage: float) -> list[TokenSequence]:
@@ -88,5 +133,8 @@ def trajectory_to_training_sequences(traj: Trajectory, advantage: float) -> list
     position stays 0.0. (In REINFORCE/GRPO, all tokens the policy generated
     in an episode share the episode-level advantage.)
     """
-    # TODO(student): implement this function.
-    raise NotImplementedError
+    sequences = stitch_trajectory(traj)
+    value = float(advantage)
+    for sequence in sequences:
+        sequence.advantages = [value if mask else 0.0 for mask in sequence.mask]
+    return sequences
