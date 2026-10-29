@@ -1,0 +1,302 @@
+{
+  "source": "Two completed formal p43 runs only; no probes or resumed segments.",
+  "comparison": "Provided configs differ only in loss_fn and run_name. No-IW still logs importance ratios diagnostically; they do not enter its CE objective.",
+  "interpretation": "Each config run once; different realized baselines, task/sample order, retained data and update counts limit causal conclusions.",
+  "runs": [
+    {
+      "run_name": "p43_number_search_async_stale4_iw",
+      "training_iterations": 50,
+      "optimizer_updates": 49,
+      "skipped_steps": [
+        50
+      ],
+      "skipped_iterations": 1,
+      "groups_consumed": 400,
+      "groups_dropped_stale": 0,
+      "stale_fraction_of_dequeued_groups": 0.0,
+      "episodes_in_accepted_groups": 3200,
+      "retained_training_sequences": 2320,
+      "training_action_tokens": 394900,
+      "baseline_eval_success_rate": 0.29,
+      "final_eval_success_rate": 0.985,
+      "final_eval_pass_at_4": 1.0,
+      "mean_step_seconds": 32.138493661880496,
+      "median_step_seconds": 26.46217453479767,
+      "total_step_seconds": 1606.9246830940247,
+      "total_update_seconds": 1207.6779511690838,
+      "total_learner_wait_seconds": 179.42092725873226,
+      "time_weighted_learner_wait_fraction": 0.11165484552348118,
+      "after_baseline_through_final_eval_seconds": 1682.4187271595001,
+      "final_eval_tail_seconds": 75.49404406547546,
+      "abandoned_episodes": 0,
+      "final_sampler_path": "tinker://model_85e6553c/v49",
+      "log_path": "runs/p43_number_search_async_stale4_iw.jsonl",
+      "log_sha256": "8fa978f44e77bc958ec81fb44313867439544e8f2a39bd9219ac121d6decd4e0",
+      "train/grad_norm": {
+        "min": 0.029347866773605347,
+        "max": 0.12584364414215088,
+        "first": 0.12011487782001495,
+        "last": 0.04309825971722603,
+        "observations": 49
+      },
+      "train/importance_weight_mean": {
+        "min": 0.9993477942462289,
+        "max": 1.0006424604856232,
+        "first": 0.9996560811238556,
+        "last": 1.0001809025534785,
+        "observations": 49
+      },
+      "train/importance_weight_max": {
+        "min": 1.2287711846920948,
+        "max": 2.4493373491398267,
+        "first": 1.4299852196028935,
+        "last": 1.261180007061924,
+        "observations": 49
+      },
+      "train/importance_weight_std": {
+        "min": 0.01269183045578535,
+        "max": 0.05096586170388517,
+        "first": 0.02554030880739916,
+        "last": 0.02044273340599855,
+        "observations": 49
+      },
+      "train/frac_degenerate_groups": {
+        "min": 0.0,
+        "max": 1.0,
+        "first": 0.25,
+        "last": 1.0,
+        "observations": 50
+      },
+      "train/entropy_proxy": {
+        "min": 0.054718952194935944,
+        "max": 0.2167561438031174,
+        "first": 0.20453781491169085,
+        "last": 0.06034514363794307,
+        "observations": 49
+      },
+      "train/importance_weight_min": {
+        "min": 0.14017059400079163,
+        "max": 0.7790316182303068,
+        "first": 0.6927020507148942,
+        "last": 0.3590470762952453,
+        "observations": 49
+      },
+      "loss_fn": "ppo",
+      "max_staleness": 4,
+      "config_path": "configs/p43_number_search_async_stale4_iw.yaml",
+      "config_sha256": "1d33306fe8a06c6653fe98fa81fb61ac26498a8c2ece28d067ccb93f8f0badeb",
+      "num_degenerate_groups": 110,
+      "degenerate_fraction": 0.275,
+      "all_failure_groups": 16,
+      "all_success_groups": 94,
+      "final_policy_version": 49,
+      "train/mean_abs_advantage": {
+        "min": 0.1464140040788579,
+        "max": 0.48082395150315477,
+        "first": 0.4511069218870843,
+        "last": 0.1708859362584974,
+        "mean_over_recorded_iterations": 0.3420161350876721,
+        "observations": 49
+      },
+      "train/adv_std": {
+        "min": 0.1665436532081556,
+        "max": 0.49877539186295783,
+        "first": 0.46954988449751595,
+        "last": 0.23966247765482987,
+        "mean_over_recorded_iterations": 0.39059516710234443,
+        "observations": 49
+      },
+      "evaluations": [
+        {
+          "step": 0,
+          "eval/success_rate": 0.29,
+          "eval/pass@4": 0.72,
+          "eval/policy_version": 0
+        },
+        {
+          "step": 10,
+          "eval/success_rate": 0.425,
+          "eval/pass@4": 0.86,
+          "eval/policy_version": 10
+        },
+        {
+          "step": 20,
+          "eval/success_rate": 0.54,
+          "eval/pass@4": 0.98,
+          "eval/policy_version": 20
+        },
+        {
+          "step": 30,
+          "eval/success_rate": 0.79,
+          "eval/pass@4": 0.98,
+          "eval/policy_version": 30
+        },
+        {
+          "step": 40,
+          "eval/success_rate": 0.955,
+          "eval/pass@4": 1.0,
+          "eval/policy_version": 40
+        },
+        {
+          "step": 50,
+          "eval/success_rate": 0.985,
+          "eval/pass@4": 1.0,
+          "eval/policy_version": 49
+        }
+      ]
+    },
+    {
+      "run_name": "p43_number_search_async_stale4_noiw",
+      "training_iterations": 50,
+      "optimizer_updates": 38,
+      "skipped_steps": [
+        32,
+        33,
+        36,
+        37,
+        38,
+        39,
+        40,
+        42,
+        45,
+        46,
+        48,
+        50
+      ],
+      "skipped_iterations": 12,
+      "groups_consumed": 400,
+      "groups_dropped_stale": 0,
+      "stale_fraction_of_dequeued_groups": 0.0,
+      "episodes_in_accepted_groups": 3200,
+      "retained_training_sequences": 1568,
+      "training_action_tokens": 253012,
+      "baseline_eval_success_rate": 0.375,
+      "final_eval_success_rate": 0.985,
+      "final_eval_pass_at_4": 1.0,
+      "mean_step_seconds": 26.91788020133972,
+      "median_step_seconds": 23.05230712890625,
+      "total_step_seconds": 1345.894010066986,
+      "total_update_seconds": 822.2552491620299,
+      "total_learner_wait_seconds": 374.08847998903366,
+      "time_weighted_learner_wait_fraction": 0.2779479492374106,
+      "after_baseline_through_final_eval_seconds": 1416.5118560791016,
+      "final_eval_tail_seconds": 70.61784601211548,
+      "abandoned_episodes": 0,
+      "final_sampler_path": "tinker://model_de9d676a/v38",
+      "log_path": "runs/p43_number_search_async_stale4_noiw.jsonl",
+      "log_sha256": "7d381a123558afab0c4d04859679fa169ad112e86d483cf1ff7f1a07a01685ca",
+      "train/grad_norm": {
+        "min": 0.03797199949622154,
+        "max": 0.14788490533828735,
+        "first": 0.09363484382629395,
+        "last": 0.06011228263378143,
+        "observations": 38
+      },
+      "train/importance_weight_mean": {
+        "min": 0.9980084163834406,
+        "max": 1.0007476792114283,
+        "first": 0.9998656255716498,
+        "last": 0.9999695496028357,
+        "observations": 38
+      },
+      "train/importance_weight_max": {
+        "min": 1.182870137932305,
+        "max": 3.780347678240613,
+        "first": 1.595963770308357,
+        "last": 1.3608853893292385,
+        "observations": 38
+      },
+      "train/importance_weight_std": {
+        "min": 0.012468465866403098,
+        "max": 0.08182030251515471,
+        "first": 0.026055237981059402,
+        "last": 0.016675155133000046,
+        "observations": 38
+      },
+      "train/frac_degenerate_groups": {
+        "min": 0.0,
+        "max": 1.0,
+        "first": 0.125,
+        "last": 1.0,
+        "observations": 50
+      },
+      "train/entropy_proxy": {
+        "min": 0.04835251461458747,
+        "max": 0.18935315956231433,
+        "first": 0.1776745910014815,
+        "last": 0.07559715801282826,
+        "observations": 38
+      },
+      "train/importance_weight_min": {
+        "min": 0.0773937435209104,
+        "max": 0.8084989388358679,
+        "first": 0.5451722648768462,
+        "last": 0.7801220915631666,
+        "observations": 38
+      },
+      "loss_fn": "cross_entropy",
+      "max_staleness": 4,
+      "config_path": "configs/p43_number_search_async_stale4_noiw.yaml",
+      "config_sha256": "b885f0a32d3bcb1b4ea74a1d783ce075c00c2e6d148e56faf45a1d8efa684d01",
+      "num_degenerate_groups": 204,
+      "degenerate_fraction": 0.51,
+      "all_failure_groups": 11,
+      "all_success_groups": 193,
+      "final_policy_version": 38,
+      "train/mean_abs_advantage": {
+        "min": 0.18177607199576495,
+        "max": 0.44767410375825845,
+        "first": 0.3597990162822252,
+        "last": 0.18534105815478794,
+        "mean_over_recorded_iterations": 0.3316209072566974,
+        "observations": 38
+      },
+      "train/adv_std": {
+        "min": 0.26451979684974786,
+        "max": 0.485194617355465,
+        "first": 0.41530110580108803,
+        "last": 0.2719959160374825,
+        "mean_over_recorded_iterations": 0.39612885385679,
+        "observations": 38
+      },
+      "evaluations": [
+        {
+          "step": 0,
+          "eval/success_rate": 0.375,
+          "eval/pass@4": 0.82,
+          "eval/policy_version": 0
+        },
+        {
+          "step": 10,
+          "eval/success_rate": 0.46,
+          "eval/pass@4": 0.82,
+          "eval/policy_version": 10
+        },
+        {
+          "step": 20,
+          "eval/success_rate": 0.81,
+          "eval/pass@4": 0.98,
+          "eval/policy_version": 20
+        },
+        {
+          "step": 30,
+          "eval/success_rate": 0.99,
+          "eval/pass@4": 1.0,
+          "eval/policy_version": 30
+        },
+        {
+          "step": 40,
+          "eval/success_rate": 0.99,
+          "eval/pass@4": 1.0,
+          "eval/policy_version": 33
+        },
+        {
+          "step": 50,
+          "eval/success_rate": 0.985,
+          "eval/pass@4": 1.0,
+          "eval/policy_version": 38
+        }
+      ]
+    }
+  ]
+}

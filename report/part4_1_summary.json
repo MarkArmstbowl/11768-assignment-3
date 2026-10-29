@@ -1,0 +1,348 @@
+{
+  "source": "Formal p2a, p41, p2b only; probes excluded.",
+  "interpretation": "REINFORCE degeneracy is N/A. Retained sequences may have zero advantage. Logged advantage moments describe retained action tokens, not unconditional episodes.",
+  "runs": [
+    {
+      "run_name": "p2a_number_search_reinforce",
+      "algorithm": "REINFORCE G=1",
+      "group_size": 1,
+      "loss_fn": "importance_sampling",
+      "training_iterations": 50,
+      "optimizer_updates": 50,
+      "skipped_iterations": 0,
+      "skipped_steps": [],
+      "sampled_training_episodes": 400,
+      "training_sequences": 400,
+      "training_action_tokens": 47088,
+      "baseline_eval_success_rate": 0.355,
+      "step20_eval_success_rate": 0.47,
+      "final_eval_success_rate": 0.52,
+      "baseline_eval_pass_at_4": 0.76,
+      "final_eval_pass_at_4": 0.86,
+      "after_baseline_seconds": 3018.385801076889,
+      "abandoned_train_episodes": 0,
+      "abandoned_eval_episodes": 0,
+      "final_sampler_path": "tinker://model_545eda3d/step_000050",
+      "log_path": "runs/p2a_number_search_reinforce.jsonl",
+      "log_sha256": "10d7220d14ef8b3ce61ce7040cb0bb757980a48de8a69f8f9ffd7149f02f70c4",
+      "config_path": "configs/p2a_number_search_reinforce.yaml",
+      "train/grad_norm": {
+        "min": 0.0,
+        "max": 0.5293176770210266,
+        "observations": 50
+      },
+      "train/importance_weight_mean": {
+        "min": 0.9976292254523477,
+        "max": 1.0016916845664268,
+        "observations": 50
+      },
+      "train/importance_weight_max": {
+        "min": 1.1130790017247776,
+        "max": 1.5995441696498405,
+        "observations": 50
+      },
+      "train/importance_weight_std": {
+        "min": 0.015427595650495726,
+        "max": 0.03525846550944546,
+        "observations": 50
+      },
+      "train/frac_degenerate_groups": {
+        "min": 0.0,
+        "max": 0.0,
+        "observations": 50
+      },
+      "train/entropy_proxy": {
+        "min": 0.08509190166783813,
+        "max": 0.27157118795752827,
+        "observations": 50
+      },
+      "degenerate_fraction": null,
+      "num_degenerate_groups": null,
+      "successful_training_episodes": 169,
+      "train/adv_std": {
+        "min": 0.0,
+        "max": 0.5,
+        "mean_over_recorded_iterations": 0.4282995281140607,
+        "observations": 50
+      },
+      "train/mean_abs_advantage": {
+        "min": 0.0,
+        "max": 0.9037433155080213,
+        "mean_over_recorded_iterations": 0.4119870666489056,
+        "observations": 50
+      },
+      "windows": {
+        "10": {
+          "num_groups": 80,
+          "degenerate_groups": null,
+          "degenerate_fraction": null,
+          "mixed_groups": null,
+          "all_success_groups": null,
+          "all_failure_groups": null,
+          "mean_train_success": 0.4,
+          "retained_sequences": 80,
+          "mean_retained_sequences": 8
+        },
+        "20": {
+          "num_groups": 160,
+          "degenerate_groups": null,
+          "degenerate_fraction": null,
+          "mixed_groups": null,
+          "all_success_groups": null,
+          "all_failure_groups": null,
+          "mean_train_success": 0.35625,
+          "retained_sequences": 160,
+          "mean_retained_sequences": 8
+        },
+        "50": {
+          "num_groups": 400,
+          "degenerate_groups": null,
+          "degenerate_fraction": null,
+          "mixed_groups": null,
+          "all_success_groups": null,
+          "all_failure_groups": null,
+          "mean_train_success": 0.4225,
+          "retained_sequences": 400,
+          "mean_retained_sequences": 8
+        }
+      }
+    },
+    {
+      "run_name": "p41_number_search_grpo_g2",
+      "algorithm": "GRPO G=2",
+      "group_size": 2,
+      "loss_fn": "ppo",
+      "training_iterations": 50,
+      "optimizer_updates": 41,
+      "skipped_iterations": 9,
+      "skipped_steps": [
+        36,
+        40,
+        41,
+        42,
+        45,
+        47,
+        48,
+        49,
+        50
+      ],
+      "sampled_training_episodes": 800,
+      "training_sequences": 282,
+      "training_action_tokens": 40479,
+      "baseline_eval_success_rate": 0.355,
+      "step20_eval_success_rate": 0.445,
+      "final_eval_success_rate": 0.955,
+      "baseline_eval_pass_at_4": 0.72,
+      "final_eval_pass_at_4": 1.0,
+      "after_baseline_seconds": 2258.0616240501404,
+      "abandoned_train_episodes": 0,
+      "abandoned_eval_episodes": 0,
+      "final_sampler_path": "tinker://model_541345db/step_000046",
+      "log_path": "runs/p41_number_search_grpo_g2.jsonl",
+      "log_sha256": "bdbdc46de4b1ceeefcd9b9735f57835d4e1d46650038d7c7a958d3512fe6aca3",
+      "config_path": "configs/p41_number_search_grpo_g2.yaml",
+      "train/grad_norm": {
+        "min": 0.13449619710445404,
+        "max": 0.637149453163147,
+        "observations": 41
+      },
+      "train/importance_weight_mean": {
+        "min": 0.998460724375836,
+        "max": 1.0045019608639165,
+        "observations": 41
+      },
+      "train/importance_weight_max": {
+        "min": 1.0758174359169197,
+        "max": 1.4031361398595357,
+        "observations": 41
+      },
+      "train/importance_weight_std": {
+        "min": 0.011270248743377705,
+        "max": 0.03155537996479488,
+        "observations": 41
+      },
+      "train/frac_degenerate_groups": {
+        "min": 0.125,
+        "max": 1.0,
+        "observations": 50
+      },
+      "train/entropy_proxy": {
+        "min": 0.07499828793789882,
+        "max": 0.264673353615406,
+        "observations": 41
+      },
+      "degenerate_fraction": 0.6475,
+      "num_degenerate_groups": 259,
+      "successful_training_episodes": 487,
+      "train/adv_std": {
+        "min": 0.424727963958155,
+        "max": 0.5,
+        "mean_over_recorded_iterations": 0.4893778443831009,
+        "observations": 41
+      },
+      "train/mean_abs_advantage": {
+        "min": 0.5,
+        "max": 0.5,
+        "mean_over_recorded_iterations": 0.5,
+        "observations": 41
+      },
+      "windows": {
+        "10": {
+          "num_groups": 80,
+          "degenerate_groups": 44,
+          "degenerate_fraction": 0.55,
+          "mixed_groups": 36,
+          "all_success_groups": 16,
+          "all_failure_groups": 28,
+          "mean_train_success": 0.425,
+          "retained_sequences": 72,
+          "mean_retained_sequences": 7.2
+        },
+        "20": {
+          "num_groups": 160,
+          "degenerate_groups": 85,
+          "degenerate_fraction": 0.53125,
+          "mixed_groups": 75,
+          "all_success_groups": 28,
+          "all_failure_groups": 57,
+          "mean_train_success": 0.409375,
+          "retained_sequences": 150,
+          "mean_retained_sequences": 7.5
+        },
+        "50": {
+          "num_groups": 400,
+          "degenerate_groups": 259,
+          "degenerate_fraction": 0.6475,
+          "mixed_groups": 141,
+          "all_success_groups": 173,
+          "all_failure_groups": 86,
+          "mean_train_success": 0.60875,
+          "retained_sequences": 282,
+          "mean_retained_sequences": 5.64
+        }
+      }
+    },
+    {
+      "run_name": "p2b_number_search_grpo",
+      "algorithm": "GRPO G=8",
+      "group_size": 8,
+      "loss_fn": "ppo",
+      "training_iterations": 50,
+      "optimizer_updates": 34,
+      "skipped_iterations": 16,
+      "skipped_steps": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        30,
+        32,
+        35,
+        37,
+        40,
+        43,
+        44,
+        45,
+        46,
+        48,
+        49
+      ],
+      "sampled_training_episodes": 3200,
+      "training_sequences": 1200,
+      "training_action_tokens": 244375,
+      "baseline_eval_success_rate": 0.345,
+      "step20_eval_success_rate": 0.98,
+      "final_eval_success_rate": 0.99,
+      "baseline_eval_pass_at_4": 0.74,
+      "final_eval_pass_at_4": 1.0,
+      "after_baseline_seconds": 1973.1975238323212,
+      "abandoned_train_episodes": 0,
+      "abandoned_eval_episodes": 0,
+      "final_sampler_path": "tinker://model_338bad6e/step_000050",
+      "log_path": "runs/p2b_number_search_grpo.jsonl",
+      "log_sha256": "1ae736a710324d5b4466548ba240d1a4fe68122bcd329d5cfca53a32f07fc62d",
+      "config_path": "configs/p2b_number_search_grpo.yaml",
+      "train/grad_norm": {
+        "min": 0.033533304929733276,
+        "max": 0.09457958489656448,
+        "observations": 34
+      },
+      "train/importance_weight_mean": {
+        "min": 0.99927426777365,
+        "max": 1.0003430932151576,
+        "observations": 34
+      },
+      "train/importance_weight_max": {
+        "min": 1.126886674946457,
+        "max": 1.9540080143926644,
+        "observations": 34
+      },
+      "train/importance_weight_std": {
+        "min": 0.013377866044468025,
+        "max": 0.024504335806179427,
+        "observations": 34
+      },
+      "train/frac_degenerate_groups": {
+        "min": 0.0,
+        "max": 1.0,
+        "observations": 50
+      },
+      "train/entropy_proxy": {
+        "min": 0.0486000474136298,
+        "max": 0.19455948412978538,
+        "observations": 34
+      },
+      "degenerate_fraction": 0.625,
+      "num_degenerate_groups": 250,
+      "successful_training_episodes": 2595,
+      "train/adv_std": {
+        "min": 0.1546577282773997,
+        "max": 0.5059949652060353,
+        "mean_over_recorded_iterations": 0.3813014421840965,
+        "observations": 34
+      },
+      "train/mean_abs_advantage": {
+        "min": 0.1433901918976546,
+        "max": 0.4892279805063592,
+        "mean_over_recorded_iterations": 0.3102209679851603,
+        "observations": 34
+      },
+      "windows": {
+        "10": {
+          "num_groups": 80,
+          "degenerate_groups": 5,
+          "degenerate_fraction": 0.0625,
+          "mixed_groups": 75,
+          "all_success_groups": 1,
+          "all_failure_groups": 4,
+          "mean_train_success": 0.4109375,
+          "retained_sequences": 600,
+          "mean_retained_sequences": 60
+        },
+        "20": {
+          "num_groups": 160,
+          "degenerate_groups": 28,
+          "degenerate_fraction": 0.175,
+          "mixed_groups": 132,
+          "all_success_groups": 23,
+          "all_failure_groups": 5,
+          "mean_train_success": 0.5421875,
+          "retained_sequences": 1056,
+          "mean_retained_sequences": 52.8
+        },
+        "50": {
+          "num_groups": 400,
+          "degenerate_groups": 250,
+          "degenerate_fraction": 0.625,
+          "mixed_groups": 150,
+          "all_success_groups": 245,
+          "all_failure_groups": 5,
+          "mean_train_success": 0.8109375,
+          "retained_sequences": 1200,
+          "mean_retained_sequences": 24
+        }
+      }
+    }
+  ]
+}

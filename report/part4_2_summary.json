@@ -1,0 +1,195 @@
+{
+  "source": "Formal p2b and p3; same comparison and figure files as Part 3, no new training.",
+  "timing_definition": "All 50 train/step_time_s intervals, including skipped iterations; excludes cold start, baseline evaluation, and final evaluation drain.",
+  "speedup_sync_over_async": 1.1834816709808236,
+  "step_time_reduction_fraction": 0.15503549863071486,
+  "runs": [
+    {
+      "run_name": "p2b_number_search_grpo",
+      "training_iterations": 50,
+      "optimizer_updates": 34,
+      "skipped_steps": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        30,
+        32,
+        35,
+        37,
+        40,
+        43,
+        44,
+        45,
+        46,
+        48,
+        49
+      ],
+      "skipped_iterations": 16,
+      "groups_consumed": 400,
+      "groups_dropped_stale": 0,
+      "stale_fraction_of_dequeued_groups": 0.0,
+      "episodes_in_accepted_groups": 3200,
+      "retained_training_sequences": 1200,
+      "training_action_tokens": 244375,
+      "baseline_eval_success_rate": 0.345,
+      "final_eval_success_rate": 0.99,
+      "final_eval_pass_at_4": 1.0,
+      "mean_step_seconds": 38.02866805553436,
+      "median_step_seconds": 27.922746658325195,
+      "total_step_seconds": 1901.4334027767181,
+      "total_update_seconds": 442.5765173326363,
+      "total_learner_wait_seconds": 1260.37758170109,
+      "time_weighted_learner_wait_fraction": 0.6628565480445039,
+      "after_baseline_through_final_eval_seconds": 1973.1975238323212,
+      "final_eval_tail_seconds": 71.76412105560303,
+      "abandoned_episodes": 0,
+      "final_sampler_path": "tinker://model_338bad6e/step_000050",
+      "log_path": "runs/p2b_number_search_grpo.jsonl",
+      "log_sha256": "1ae736a710324d5b4466548ba240d1a4fe68122bcd329d5cfca53a32f07fc62d",
+      "train/grad_norm": {
+        "min": 0.033533304929733276,
+        "max": 0.09457958489656448,
+        "first": 0.07268670946359634,
+        "last": 0.059033967554569244,
+        "observations": 34
+      },
+      "train/importance_weight_mean": {
+        "min": 0.99927426777365,
+        "max": 1.0003430932151576,
+        "first": 1.0002745131304354,
+        "last": 1.0003430932151576,
+        "observations": 34
+      },
+      "train/importance_weight_max": {
+        "min": 1.126886674946457,
+        "max": 1.9540080143926644,
+        "first": 1.4544579848612906,
+        "last": 1.2711773322820878,
+        "observations": 34
+      },
+      "train/importance_weight_std": {
+        "min": 0.013377866044468025,
+        "max": 0.024504335806179427,
+        "first": 0.024130710492104402,
+        "last": 0.014566129072379676,
+        "observations": 34
+      },
+      "train/frac_degenerate_groups": {
+        "min": 0.0,
+        "max": 1.0,
+        "first": 0.0,
+        "last": 0.875,
+        "observations": 50
+      },
+      "train/entropy_proxy": {
+        "min": 0.0486000474136298,
+        "max": 0.19455948412978538,
+        "first": 0.17255213132231595,
+        "last": 0.0686514896535125,
+        "observations": 34
+      },
+      "train/importance_weight_min": {
+        "min": 0.5044280298377812,
+        "max": 0.7954699305979712,
+        "first": 0.7116397273994776,
+        "last": 0.7829237401748254,
+        "observations": 34
+      }
+    },
+    {
+      "run_name": "p3_number_search_async",
+      "training_iterations": 50,
+      "optimizer_updates": 40,
+      "skipped_steps": [
+        33,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        45,
+        48,
+        50
+      ],
+      "skipped_iterations": 10,
+      "groups_consumed": 400,
+      "groups_dropped_stale": 71,
+      "stale_fraction_of_dequeued_groups": 0.15074309978768577,
+      "episodes_in_accepted_groups": 3200,
+      "retained_training_sequences": 1720,
+      "training_action_tokens": 343636,
+      "baseline_eval_success_rate": 0.315,
+      "final_eval_success_rate": 0.995,
+      "final_eval_pass_at_4": 1.0,
+      "mean_step_seconds": 32.13287454128265,
+      "median_step_seconds": 27.947379112243652,
+      "total_step_seconds": 1606.6437270641327,
+      "total_update_seconds": 904.9328167900676,
+      "total_learner_wait_seconds": 573.3283161930158,
+      "time_weighted_learner_wait_fraction": 0.3568484453243878,
+      "after_baseline_through_final_eval_seconds": 1684.0996780395508,
+      "final_eval_tail_seconds": 77.45595097541809,
+      "abandoned_episodes": 0,
+      "final_sampler_path": "tinker://model_0eedf0bc/v40",
+      "log_path": "runs/p3_number_search_async.jsonl",
+      "log_sha256": "7e854d2db9ea52af68bfeda924ca349fef7aa4007c2c0e1c55a1bc082600083e",
+      "train/grad_norm": {
+        "min": 0.027190526947379112,
+        "max": 0.13550116121768951,
+        "first": 0.08972301334142685,
+        "last": 0.03567233681678772,
+        "observations": 40
+      },
+      "train/importance_weight_mean": {
+        "min": 0.9989152069208419,
+        "max": 1.0005738884178572,
+        "first": 1.000560845938809,
+        "last": 0.9997987538865193,
+        "observations": 40
+      },
+      "train/importance_weight_max": {
+        "min": 1.2267011039455298,
+        "max": 2.2192949019717827,
+        "first": 1.4300442025819489,
+        "last": 1.2789170195869213,
+        "observations": 40
+      },
+      "train/importance_weight_std": {
+        "min": 0.013002801407139069,
+        "max": 0.04493681036033585,
+        "first": 0.02154407026132628,
+        "last": 0.014999166132507555,
+        "observations": 40
+      },
+      "train/frac_degenerate_groups": {
+        "min": 0.0,
+        "max": 1.0,
+        "first": 0.25,
+        "last": 1.0,
+        "observations": 50
+      },
+      "train/entropy_proxy": {
+        "min": 0.04795096700046169,
+        "max": 0.2233027269139715,
+        "first": 0.16870323013201524,
+        "last": 0.05386495972671178,
+        "observations": 40
+      },
+      "train/importance_weight_min": {
+        "min": 0.39833959275244574,
+        "max": 0.7861227649944801,
+        "first": 0.7387644444810272,
+        "last": 0.538364316398475,
+        "observations": 40
+      }
+    }
+  ],
+  "reused_figure_sha256": {
+    "report/figures/part3_rewards.png": "200c13ca9dcc1bf1686cad66b06480b6ab5dff2bf7235f8ad89ec13270b25c2f",
+    "report/figures/part3_diagnostics.png": "b48bb5f078b1071ce573d7b96dee37348e2ce0d6ea837a1cc4e247b24eefca95",
+    "report/figures/part3_timing.png": "e3821951d9d84bff177977af8f4ee2b37033e4df10e6a5d83adca28ac99f47c3"
+  }
+}

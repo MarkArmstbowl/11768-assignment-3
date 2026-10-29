@@ -1,0 +1,3 @@
+run_name,mean_step_seconds,median_step_seconds,total_step_seconds,time_weighted_learner_wait_fraction,optimizer_updates,skipped_iterations,retained_training_sequences,final_eval_success_rate,final_eval_pass_at_4,groups_consumed,groups_dropped_stale,stale_fraction_of_dequeued_groups
+p2b_number_search_grpo,38.02866805553436,27.922746658325195,1901.4334027767181,0.6628565480445039,34,16,1200,0.99,1.0,400,0,0.0
+p3_number_search_async,32.13287454128265,27.947379112243652,1606.6437270641327,0.3568484453243878,40,10,1720,0.995,1.0,400,71,0.15074309978768577

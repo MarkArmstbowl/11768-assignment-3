@@ -1,0 +1,4 @@
+run_name,group_size,loss_fn,baseline_eval_success_rate,final_eval_success_rate,final_eval_pass_at_4,optimizer_updates,skipped_iterations,sampled_training_episodes,training_sequences,training_action_tokens,degenerate_fraction,num_degenerate_groups
+p2a_number_search_reinforce,1,importance_sampling,0.355,0.52,0.86,50,0,400,400,47088,,
+p41_number_search_grpo_g2,2,ppo,0.355,0.955,1.0,41,9,800,282,40479,0.6475,259
+p2b_number_search_grpo,8,ppo,0.345,0.99,1.0,34,16,3200,1200,244375,0.625,250
