@@ -1,0 +1,134 @@
+{
+  "source": "Completed formal runs only; probe and archived failed startup excluded.",
+  "timing_definition": "Iteration-0 evaluation record to iteration-50 evaluation record; excludes startup and baseline evaluation.",
+  "missing_values": "Skipped-update diagnostics remain missing, not zero.",
+  "runs": [
+    {
+      "run_name": "p2a_number_search_reinforce",
+      "algorithm": "REINFORCE",
+      "group_size": 1,
+      "loss_fn": "importance_sampling",
+      "training_iterations": 50,
+      "optimizer_updates": 50,
+      "skipped_iterations": 0,
+      "skipped_steps": [],
+      "sampled_training_episodes": 400,
+      "training_sequences": 400,
+      "training_action_tokens": 47088,
+      "baseline_eval_success_rate": 0.355,
+      "step20_eval_success_rate": 0.47,
+      "final_eval_success_rate": 0.52,
+      "baseline_eval_pass_at_4": 0.76,
+      "final_eval_pass_at_4": 0.86,
+      "after_baseline_seconds": 3018.385801076889,
+      "abandoned_train_episodes": 0,
+      "abandoned_eval_episodes": 0,
+      "final_sampler_path": "tinker://model_545eda3d/step_000050",
+      "log_path": "runs/p2a_number_search_reinforce.jsonl",
+      "log_sha256": "10d7220d14ef8b3ce61ce7040cb0bb757980a48de8a69f8f9ffd7149f02f70c4",
+      "config_path": "configs/p2a_number_search_reinforce.yaml",
+      "train/grad_norm": {
+        "min": 0.0,
+        "max": 0.5293176770210266,
+        "observations": 50
+      },
+      "train/importance_weight_mean": {
+        "min": 0.9976292254523477,
+        "max": 1.0016916845664268,
+        "observations": 50
+      },
+      "train/importance_weight_max": {
+        "min": 1.1130790017247776,
+        "max": 1.5995441696498405,
+        "observations": 50
+      },
+      "train/importance_weight_std": {
+        "min": 0.015427595650495726,
+        "max": 0.03525846550944546,
+        "observations": 50
+      },
+      "train/frac_degenerate_groups": {
+        "min": 0.0,
+        "max": 0.0,
+        "observations": 50
+      },
+      "train/entropy_proxy": {
+        "min": 0.08509190166783813,
+        "max": 0.27157118795752827,
+        "observations": 50
+      }
+    },
+    {
+      "run_name": "p2b_number_search_grpo",
+      "algorithm": "GRPO",
+      "group_size": 8,
+      "loss_fn": "ppo",
+      "training_iterations": 50,
+      "optimizer_updates": 34,
+      "skipped_iterations": 16,
+      "skipped_steps": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        30,
+        32,
+        35,
+        37,
+        40,
+        43,
+        44,
+        45,
+        46,
+        48,
+        49
+      ],
+      "sampled_training_episodes": 3200,
+      "training_sequences": 1200,
+      "training_action_tokens": 244375,
+      "baseline_eval_success_rate": 0.345,
+      "step20_eval_success_rate": 0.98,
+      "final_eval_success_rate": 0.99,
+      "baseline_eval_pass_at_4": 0.74,
+      "final_eval_pass_at_4": 1.0,
+      "after_baseline_seconds": 1973.1975238323212,
+      "abandoned_train_episodes": 0,
+      "abandoned_eval_episodes": 0,
+      "final_sampler_path": "tinker://model_338bad6e/step_000050",
+      "log_path": "runs/p2b_number_search_grpo.jsonl",
+      "log_sha256": "1ae736a710324d5b4466548ba240d1a4fe68122bcd329d5cfca53a32f07fc62d",
+      "config_path": "configs/p2b_number_search_grpo.yaml",
+      "train/grad_norm": {
+        "min": 0.033533304929733276,
+        "max": 0.09457958489656448,
+        "observations": 34
+      },
+      "train/importance_weight_mean": {
+        "min": 0.99927426777365,
+        "max": 1.0003430932151576,
+        "observations": 34
+      },
+      "train/importance_weight_max": {
+        "min": 1.126886674946457,
+        "max": 1.9540080143926644,
+        "observations": 34
+      },
+      "train/importance_weight_std": {
+        "min": 0.013377866044468025,
+        "max": 0.024504335806179427,
+        "observations": 34
+      },
+      "train/frac_degenerate_groups": {
+        "min": 0.0,
+        "max": 1.0,
+        "observations": 50
+      },
+      "train/entropy_proxy": {
+        "min": 0.0486000474136298,
+        "max": 0.19455948412978538,
+        "observations": 34
+      }
+    }
+  ]
+}
