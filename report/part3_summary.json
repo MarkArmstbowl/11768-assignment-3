@@ -1,0 +1,369 @@
+{
+  "source": "Completed formal p2b and p3 only; probes excluded.",
+  "timing_definition": "All 50 train/step_time_s values, including skipped iterations; excludes cold start, baseline evaluation, and final evaluation drain.",
+  "speedup_sync_over_async": 1.1834816709808236,
+  "step_time_reduction_fraction": 0.15503549863071486,
+  "runs": [
+    {
+      "run_name": "p2b_number_search_grpo",
+      "training_iterations": 50,
+      "optimizer_updates": 34,
+      "skipped_steps": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        30,
+        32,
+        35,
+        37,
+        40,
+        43,
+        44,
+        45,
+        46,
+        48,
+        49
+      ],
+      "skipped_iterations": 16,
+      "groups_consumed": 400,
+      "groups_dropped_stale": 0,
+      "stale_fraction_of_dequeued_groups": 0.0,
+      "episodes_in_accepted_groups": 3200,
+      "retained_training_sequences": 1200,
+      "training_action_tokens": 244375,
+      "baseline_eval_success_rate": 0.345,
+      "final_eval_success_rate": 0.99,
+      "final_eval_pass_at_4": 1.0,
+      "mean_step_seconds": 38.02866805553436,
+      "median_step_seconds": 27.922746658325195,
+      "total_step_seconds": 1901.4334027767181,
+      "total_update_seconds": 442.5765173326363,
+      "total_learner_wait_seconds": 1260.37758170109,
+      "time_weighted_learner_wait_fraction": 0.6628565480445039,
+      "after_baseline_through_final_eval_seconds": 1973.1975238323212,
+      "final_eval_tail_seconds": 71.76412105560303,
+      "abandoned_episodes": 0,
+      "final_sampler_path": "tinker://model_338bad6e/step_000050",
+      "log_path": "runs/p2b_number_search_grpo.jsonl",
+      "log_sha256": "1ae736a710324d5b4466548ba240d1a4fe68122bcd329d5cfca53a32f07fc62d",
+      "train/grad_norm": {
+        "min": 0.033533304929733276,
+        "max": 0.09457958489656448,
+        "first": 0.07268670946359634,
+        "last": 0.059033967554569244,
+        "observations": 34
+      },
+      "train/importance_weight_mean": {
+        "min": 0.99927426777365,
+        "max": 1.0003430932151576,
+        "first": 1.0002745131304354,
+        "last": 1.0003430932151576,
+        "observations": 34
+      },
+      "train/importance_weight_max": {
+        "min": 1.126886674946457,
+        "max": 1.9540080143926644,
+        "first": 1.4544579848612906,
+        "last": 1.2711773322820878,
+        "observations": 34
+      },
+      "train/importance_weight_std": {
+        "min": 0.013377866044468025,
+        "max": 0.024504335806179427,
+        "first": 0.024130710492104402,
+        "last": 0.014566129072379676,
+        "observations": 34
+      },
+      "train/frac_degenerate_groups": {
+        "min": 0.0,
+        "max": 1.0,
+        "first": 0.0,
+        "last": 0.875,
+        "observations": 50
+      },
+      "train/entropy_proxy": {
+        "min": 0.0486000474136298,
+        "max": 0.19455948412978538,
+        "first": 0.17255213132231595,
+        "last": 0.0686514896535125,
+        "observations": 34
+      },
+      "train/importance_weight_min": {
+        "min": 0.5044280298377812,
+        "max": 0.7954699305979712,
+        "first": 0.7116397273994776,
+        "last": 0.7829237401748254,
+        "observations": 34
+      }
+    },
+    {
+      "run_name": "p3_number_search_async",
+      "training_iterations": 50,
+      "optimizer_updates": 40,
+      "skipped_steps": [
+        33,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        45,
+        48,
+        50
+      ],
+      "skipped_iterations": 10,
+      "groups_consumed": 400,
+      "groups_dropped_stale": 71,
+      "stale_fraction_of_dequeued_groups": 0.15074309978768577,
+      "episodes_in_accepted_groups": 3200,
+      "retained_training_sequences": 1720,
+      "training_action_tokens": 343636,
+      "baseline_eval_success_rate": 0.315,
+      "final_eval_success_rate": 0.995,
+      "final_eval_pass_at_4": 1.0,
+      "mean_step_seconds": 32.13287454128265,
+      "median_step_seconds": 27.947379112243652,
+      "total_step_seconds": 1606.6437270641327,
+      "total_update_seconds": 904.9328167900676,
+      "total_learner_wait_seconds": 573.3283161930158,
+      "time_weighted_learner_wait_fraction": 0.3568484453243878,
+      "after_baseline_through_final_eval_seconds": 1684.0996780395508,
+      "final_eval_tail_seconds": 77.45595097541809,
+      "abandoned_episodes": 0,
+      "final_sampler_path": "tinker://model_0eedf0bc/v40",
+      "log_path": "runs/p3_number_search_async.jsonl",
+      "log_sha256": "7e854d2db9ea52af68bfeda924ca349fef7aa4007c2c0e1c55a1bc082600083e",
+      "train/grad_norm": {
+        "min": 0.027190526947379112,
+        "max": 0.13550116121768951,
+        "first": 0.08972301334142685,
+        "last": 0.03567233681678772,
+        "observations": 40
+      },
+      "train/importance_weight_mean": {
+        "min": 0.9989152069208419,
+        "max": 1.0005738884178572,
+        "first": 1.000560845938809,
+        "last": 0.9997987538865193,
+        "observations": 40
+      },
+      "train/importance_weight_max": {
+        "min": 1.2267011039455298,
+        "max": 2.2192949019717827,
+        "first": 1.4300442025819489,
+        "last": 1.2789170195869213,
+        "observations": 40
+      },
+      "train/importance_weight_std": {
+        "min": 0.013002801407139069,
+        "max": 0.04493681036033585,
+        "first": 0.02154407026132628,
+        "last": 0.014999166132507555,
+        "observations": 40
+      },
+      "train/frac_degenerate_groups": {
+        "min": 0.0,
+        "max": 1.0,
+        "first": 0.25,
+        "last": 1.0,
+        "observations": 50
+      },
+      "train/entropy_proxy": {
+        "min": 0.04795096700046169,
+        "max": 0.2233027269139715,
+        "first": 0.16870323013201524,
+        "last": 0.05386495972671178,
+        "observations": 40
+      },
+      "train/importance_weight_min": {
+        "min": 0.39833959275244574,
+        "max": 0.7861227649944801,
+        "first": 0.7387644444810272,
+        "last": 0.538364316398475,
+        "observations": 40
+      }
+    }
+  ],
+  "trajectory_examples": [
+    {
+      "path": "runs/p3_number_search_async_trajectories/step_000005/train_number_search.train.65_rollout0.jsonl",
+      "step": 5,
+      "task_id": "number_search.train.65",
+      "policy_version": 4,
+      "info": {
+        "low": 301,
+        "high": 697,
+        "target": 471
+      },
+      "max_steps": 9,
+      "reward": 0.0,
+      "num_steps": 9,
+      "midpoint_choices": 2,
+      "excluded_range_choices": 2,
+      "guesses": [
+        {
+          "guess": 500,
+          "feedback": "high",
+          "env": "500 is too high."
+        },
+        {
+          "guess": 350,
+          "feedback": "low",
+          "env": "350 is too low."
+        },
+        {
+          "guess": 450,
+          "feedback": "low",
+          "env": "450 is too low."
+        },
+        {
+          "guess": 480,
+          "feedback": "high",
+          "env": "480 is too high."
+        },
+        {
+          "guess": 440,
+          "feedback": "low",
+          "env": "440 is too low."
+        },
+        {
+          "guess": 460,
+          "feedback": "low",
+          "env": "460 is too low."
+        },
+        {
+          "guess": 470,
+          "feedback": "low",
+          "env": "470 is too low."
+        },
+        {
+          "guess": 475,
+          "feedback": "high",
+          "env": "475 is too high."
+        },
+        {
+          "guess": 470,
+          "feedback": "low",
+          "env": "470 is too low.\n(Out of steps.)"
+        }
+      ],
+      "sha256": "eab18b67afc80b52e0e4803f40e7bf5fdb5a5a9942a5cdb554af3621732a573d"
+    },
+    {
+      "path": "runs/p3_number_search_async_trajectories/step_000025/train_number_search.train.272_rollout0.jsonl",
+      "step": 25,
+      "task_id": "number_search.train.272",
+      "policy_version": 24,
+      "info": {
+        "low": 142,
+        "high": 669,
+        "target": 242
+      },
+      "max_steps": 10,
+      "reward": 1.0,
+      "num_steps": 8,
+      "midpoint_choices": 6,
+      "excluded_range_choices": 0,
+      "guesses": [
+        {
+          "guess": 405,
+          "feedback": "high",
+          "env": "405 is too high."
+        },
+        {
+          "guess": 283,
+          "feedback": "high",
+          "env": "283 is too high."
+        },
+        {
+          "guess": 221,
+          "feedback": "low",
+          "env": "221 is too low."
+        },
+        {
+          "guess": 252,
+          "feedback": "high",
+          "env": "252 is too high."
+        },
+        {
+          "guess": 236,
+          "feedback": "low",
+          "env": "236 is too low."
+        },
+        {
+          "guess": 244,
+          "feedback": "high",
+          "env": "244 is too high."
+        },
+        {
+          "guess": 240,
+          "feedback": "low",
+          "env": "240 is too low."
+        },
+        {
+          "guess": 242,
+          "feedback": "correct",
+          "env": "Correct! The number was 242."
+        }
+      ],
+      "sha256": "b4313761512df5f0bd6f10d9e617fef1443e12fafe6c93dfd844b9580cc6077d"
+    },
+    {
+      "path": "runs/p3_number_search_async_trajectories/step_000045/train_number_search.train.428_rollout0.jsonl",
+      "step": 45,
+      "task_id": "number_search.train.428",
+      "policy_version": 36,
+      "info": {
+        "low": 538,
+        "high": 892,
+        "target": 862
+      },
+      "max_steps": 9,
+      "reward": 1.0,
+      "num_steps": 7,
+      "midpoint_choices": 7,
+      "excluded_range_choices": 0,
+      "guesses": [
+        {
+          "guess": 715,
+          "feedback": "low",
+          "env": "715 is too low."
+        },
+        {
+          "guess": 804,
+          "feedback": "low",
+          "env": "804 is too low."
+        },
+        {
+          "guess": 848,
+          "feedback": "low",
+          "env": "848 is too low."
+        },
+        {
+          "guess": 871,
+          "feedback": "high",
+          "env": "871 is too high."
+        },
+        {
+          "guess": 859,
+          "feedback": "low",
+          "env": "859 is too low."
+        },
+        {
+          "guess": 865,
+          "feedback": "high",
+          "env": "865 is too high."
+        },
+        {
+          "guess": 862,
+          "feedback": "correct",
+          "env": "Correct! The number was 862."
+        }
+      ],
+      "sha256": "8197433b1f53d907c9027201d205d4560c3610078ea63c84ed5965739f8bc1e9"
+    }
+  ]
+}
