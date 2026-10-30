@@ -1,0 +1,293 @@
+{
+  "source": "Original completed formal hero run and four complete standalone outputs.",
+  "failure_protocol": "All abandoned episodes retained as failures in unchanged denominators.",
+  "training": {
+    "run_name": "p5_textcraft_grpo",
+    "training_iterations": 50,
+    "optimizer_updates": 50,
+    "groups_consumed": 800,
+    "groups_dropped_stale": 0,
+    "retained_training_sequences": 3578,
+    "training_action_tokens": 36315974,
+    "mean_step_seconds": 772.1337480020524,
+    "total_step_seconds": 38606.687400102615,
+    "time_weighted_learner_wait_fraction": 0.7358424403745061,
+    "after_baseline_through_final_eval_seconds": 39519.200747966766,
+    "final_eval_tail_seconds": 912.513347864151,
+    "abandoned_train_episodes": 16,
+    "abandoned_periodic_eval_episodes": 7,
+    "periodic_evaluations": [
+      {
+        "step": 0,
+        "time": 1793264190.017776,
+        "eval/success_rate": 0.115,
+        "eval/pass@4": 0.28,
+        "eval/avg_steps": 61.85,
+        "eval/abandoned_episodes": 2,
+        "eval/num_tasks": 50,
+        "eval/episodes_per_task": 4,
+        "eval/policy_version": 0
+      },
+      {
+        "step": 10,
+        "time": 1793276138.809559,
+        "eval/success_rate": 0.175,
+        "eval/pass@4": 0.34,
+        "eval/avg_steps": 62.73,
+        "eval/abandoned_episodes": 0,
+        "eval/num_tasks": 50,
+        "eval/episodes_per_task": 4,
+        "eval/policy_version": 10
+      },
+      {
+        "step": 20,
+        "time": 1793283946.690377,
+        "eval/success_rate": 0.29,
+        "eval/pass@4": 0.52,
+        "eval/avg_steps": 58.365,
+        "eval/abandoned_episodes": 1,
+        "eval/num_tasks": 50,
+        "eval/episodes_per_task": 4,
+        "eval/policy_version": 20
+      },
+      {
+        "step": 30,
+        "time": 1793292519.308192,
+        "eval/success_rate": 0.44,
+        "eval/pass@4": 0.64,
+        "eval/avg_steps": 55.7,
+        "eval/abandoned_episodes": 1,
+        "eval/num_tasks": 50,
+        "eval/episodes_per_task": 4,
+        "eval/policy_version": 30
+      },
+      {
+        "step": 40,
+        "time": 1793300130.828597,
+        "eval/success_rate": 0.54,
+        "eval/pass@4": 0.72,
+        "eval/avg_steps": 51.88,
+        "eval/abandoned_episodes": 2,
+        "eval/num_tasks": 50,
+        "eval/episodes_per_task": 4,
+        "eval/policy_version": 40
+      },
+      {
+        "step": 50,
+        "time": 1793303709.218524,
+        "eval/success_rate": 0.6,
+        "eval/pass@4": 0.7,
+        "eval/avg_steps": 51.7,
+        "eval/abandoned_episodes": 1,
+        "eval/num_tasks": 50,
+        "eval/episodes_per_task": 4,
+        "eval/policy_version": 50
+      }
+    ],
+    "final_sampler_path": "tinker://model_71bf8a90/v50",
+    "hf_model_id": "Marstbowl/scottyrl-a3-p5_textcraft_grpo",
+    "log_path": "runs/p5_textcraft_grpo.jsonl",
+    "log_sha256": "97ad877f693cd92e0e8a6c8511dfd8555e210f18c7eade63256a93477a31a414",
+    "train/grad_norm": {
+      "first": 0.009385624900460243,
+      "last": 0.007153697311878204,
+      "min": 0.006117900367826223,
+      "max": 0.011869443580508232,
+      "mean": 0.007900699498131871,
+      "observations": 50
+    },
+    "train/importance_weight_mean": {
+      "first": 1.0000194967181242,
+      "last": 1.0000281727559641,
+      "min": 0.9999345645459679,
+      "max": 1.0000598724074143,
+      "mean": 0.9999958060227948,
+      "observations": 50
+    },
+    "train/importance_weight_max": {
+      "first": 2.9141687263733473,
+      "last": 2.088091311328181,
+      "min": 1.513245875735958,
+      "max": 5.239670334386708,
+      "mean": 2.403928706491371,
+      "observations": 50
+    },
+    "train/importance_weight_std": {
+      "first": 0.02785152760609768,
+      "last": 0.02486884532661423,
+      "min": 0.024803465558733032,
+      "max": 0.028479466547639404,
+      "mean": 0.02651258043286591,
+      "observations": 50
+    },
+    "train/frac_degenerate_groups": {
+      "first": 0.5625,
+      "last": 0.5625,
+      "min": 0.0625,
+      "max": 0.75,
+      "mean": 0.44125,
+      "observations": 50
+    },
+    "train/entropy_proxy": {
+      "first": 0.4847936953662762,
+      "last": 0.3428251540453454,
+      "min": 0.3406277891299454,
+      "max": 0.5046903696217607,
+      "mean": 0.41562644704299245,
+      "observations": 50
+    },
+    "train/importance_weight_min": {
+      "first": 0.3049280203162238,
+      "last": 0.4082388447399351,
+      "min": 0.03426901456379132,
+      "max": 0.550650019123576,
+      "mean": 0.322728831244076,
+      "observations": 50
+    },
+    "train/success_rate": {
+      "first": 0.1484375,
+      "last": 0.7578125,
+      "min": 0.0625,
+      "max": 0.7734375,
+      "mean": 0.37890625,
+      "observations": 50
+    },
+    "train/pass@8": {
+      "first": 0.4375,
+      "last": 0.875,
+      "min": 0.25,
+      "max": 0.9375,
+      "mean": 0.6625,
+      "observations": 50
+    },
+    "train/step_time_s": {
+      "first": 1559.2143919467926,
+      "last": 596.4791212081909,
+      "min": 138.02020716667175,
+      "max": 1559.2143919467926,
+      "mean": 772.1337480020524,
+      "observations": 50
+    },
+    "train/episode_time_mean_s": {
+      "first": 759.7584008880564,
+      "last": 1094.4261201372242,
+      "min": 486.6464485243747,
+      "max": 1619.8448837098997,
+      "mean": 988.2266809364764,
+      "observations": 50
+    }
+  },
+  "standalone_evaluations": [
+    {
+      "model_label": "Fine-tuned",
+      "split": "medium",
+      "num_episodes": 852,
+      "successful_episodes": 530,
+      "passed_tasks": 165,
+      "success_rate": 0.6220657276995305,
+      "pass@4": 0.7746478873239436,
+      "avg_steps": 49.48122065727699,
+      "abandoned_episodes": 18,
+      "num_tasks": 213,
+      "episodes_per_task": 4,
+      "model_path": null,
+      "server": "https://yuboc--scottyrl-evaluation-serve.us-east.modal.run/v1",
+      "model": "a3",
+      "failure_categories": {
+        "HTTP_408": 17,
+        "parser_TypeError": 1
+      },
+      "console_path": "runs/p5_eval_ft_medium.console.log",
+      "console_sha256": "3028e44c1e84e8f843559e9a576af2a79e33cad54c389a82514dffccb2fb3dbd"
+    },
+    {
+      "model_label": "Fine-tuned",
+      "split": "hard",
+      "num_episodes": 544,
+      "successful_episodes": 1,
+      "passed_tasks": 1,
+      "success_rate": 0.001838235294117647,
+      "pass@4": 0.007352941176470588,
+      "avg_steps": 70.34558823529412,
+      "abandoned_episodes": 37,
+      "num_tasks": 136,
+      "episodes_per_task": 4,
+      "model_path": null,
+      "server": "https://yuboc--scottyrl-evaluation-serve.us-east.modal.run/v1",
+      "model": "a3",
+      "failure_categories": {
+        "ConnectError": 4,
+        "HTTP_502": 15,
+        "ReadError": 2,
+        "RemoteProtocolError": 15,
+        "parser_TypeError": 1
+      },
+      "console_path": "runs/p5_eval_ft_hard.console.log",
+      "console_sha256": "8b9456964f9ed3c1f62282524c89973ebaa67ee42245adf84a70e034a77ddc0d"
+    },
+    {
+      "model_label": "Base",
+      "split": "medium",
+      "num_episodes": 852,
+      "successful_episodes": 95,
+      "passed_tasks": 59,
+      "success_rate": 0.11150234741784038,
+      "pass@4": 0.27699530516431925,
+      "avg_steps": 61.82981220657277,
+      "abandoned_episodes": 0,
+      "num_tasks": 213,
+      "episodes_per_task": 4,
+      "model_path": null,
+      "server": "https://yuboc--scottyrl-evaluation-serve.us-east.modal.run/v1",
+      "model": "Qwen/Qwen3.5-4B",
+      "failure_categories": {},
+      "console_path": "runs/p5_eval_base_medium.console.log",
+      "console_sha256": "3040e07619faac3d0e7594e220d51f34997a843ab3aff7b9a04abd130afdf8a3"
+    },
+    {
+      "model_label": "Base",
+      "split": "hard",
+      "num_episodes": 544,
+      "successful_episodes": 0,
+      "passed_tasks": 0,
+      "success_rate": 0.0,
+      "pass@4": 0.0,
+      "avg_steps": 69.66727941176471,
+      "abandoned_episodes": 2,
+      "num_tasks": 136,
+      "episodes_per_task": 4,
+      "model_path": null,
+      "server": "https://yuboc--scottyrl-evaluation-serve.us-east.modal.run/v1",
+      "model": "Qwen/Qwen3.5-4B",
+      "failure_categories": {
+        "HTTP_502": 1,
+        "parser_TypeError": 1
+      },
+      "console_path": "runs/p5_eval_base_hard.console.log",
+      "console_sha256": "11515a3e202808f04dea69aeb9c7cdb56650586c780fbbd48dd9b998bf5cea87"
+    }
+  ],
+  "static_budget_audit": {
+    "textcraft_train.jsonl": {
+      "tasks": 852,
+      "min_required_craft_calls": 4,
+      "max_required_craft_calls": 59,
+      "mean_required_craft_calls": 20.883802816901408,
+      "craft_plus_finish_exceeds_budget": 0
+    },
+    "textcraft_val.jsonl": {
+      "tasks": 213,
+      "min_required_craft_calls": 5,
+      "max_required_craft_calls": 65,
+      "mean_required_craft_calls": 21.816901408450704,
+      "craft_plus_finish_exceeds_budget": 0
+    },
+    "textcraft_val_hard.jsonl": {
+      "tasks": 136,
+      "min_required_craft_calls": 33,
+      "max_required_craft_calls": 137,
+      "mean_required_craft_calls": 85.61764705882354,
+      "craft_plus_finish_exceeds_budget": 84
+    }
+  }
+}
