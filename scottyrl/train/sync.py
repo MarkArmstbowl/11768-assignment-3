@@ -168,20 +168,27 @@ class SyncTrainer:
         """
         tasks = self.rng.sample(self.train_tasks, self.cfg.tasks_per_batch)
         agent_cls = self.agent_cls()
-        return list(
-            await asyncio.gather(
-                *(
-                    collect_group(
-                        policy,
-                        task,
-                        self.env_factory,
-                        self.cfg.group_size,
-                        agent_cls=agent_cls,
+        group_tasks = []
+        try:
+            for task in tasks:
+                group_tasks.append(
+                    asyncio.create_task(
+                        collect_group(
+                            policy,
+                            task,
+                            self.env_factory,
+                            self.cfg.group_size,
+                            agent_cls=agent_cls,
+                        )
                     )
-                    for task in tasks
                 )
-            )
-        )
+            return list(await asyncio.gather(*group_tasks))
+        except BaseException:
+            for group_task in group_tasks:
+                if not group_task.done():
+                    group_task.cancel()
+            await asyncio.gather(*group_tasks, return_exceptions=True)
+            raise
 
     def build_batch(
         self, groups: list[list[Trajectory]]

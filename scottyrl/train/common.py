@@ -36,11 +36,21 @@ async def collect_group(
 
     Returns: `group_size` trajectories, in rollout order.
     """
-    rollouts = [
-        run_episode(agent_cls(policy), env_factory(task))
-        for _ in range(group_size)
-    ]
-    return list(await asyncio.gather(*rollouts))
+    rollouts = []
+    try:
+        for _ in range(group_size):
+            rollouts.append(
+                asyncio.create_task(run_episode(agent_cls(policy), env_factory(task)))
+            )
+        return list(await asyncio.gather(*rollouts))
+    except BaseException:
+        # gather propagates a child's failure without cancelling its siblings.
+        # Own their shutdown before passing that failure/cancellation upward.
+        for rollout in rollouts:
+            if not rollout.done():
+                rollout.cancel()
+        await asyncio.gather(*rollouts, return_exceptions=True)
+        raise
 
 
 def groups_to_batch(

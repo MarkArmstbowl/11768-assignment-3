@@ -180,6 +180,148 @@ def test_collect_group_propagates_the_original_rollout_error(monkeypatch):
     assert raised.value is failure
 
 
+def test_collect_group_failure_cancels_and_awaits_sibling_episodes(monkeypatch):
+    async def scenario():
+        failure = RuntimeError("fatal rollout")
+        siblings_started = asyncio.Event()
+        blocked = asyncio.Event()
+        episodes = []
+        cleaned = set()
+
+        async def fake_episode(agent, env):
+            index = len(episodes)
+            episodes.append(asyncio.current_task())
+            if index == 0:
+                await siblings_started.wait()
+                raise failure
+            try:
+                if len(episodes) == 3:
+                    siblings_started.set()
+                await blocked.wait()
+            finally:
+                # Cancellation alone is insufficient: the collector must
+                # await asynchronous cleanup before it propagates the error.
+                await asyncio.sleep(0)
+                cleaned.add(index)
+
+        monkeypatch.setattr(common, "run_episode", fake_episode)
+        try:
+            with pytest.raises(RuntimeError) as caught:
+                await asyncio.wait_for(
+                    common.collect_group(
+                        object(), Task("goal", "failed-group", 1), DummyEnv, 3,
+                        agent_cls=DummyAgent,
+                    ),
+                    timeout=2.0,
+                )
+            assert caught.value is failure
+            assert cleaned == {1, 2}
+            assert len(episodes) == 3 and all(task.done() for task in episodes)
+        finally:
+            for task in episodes:
+                if not task.done():
+                    task.cancel()
+            await asyncio.gather(*episodes, return_exceptions=True)
+
+    asyncio.run(scenario())
+
+
+def test_collect_group_outer_cancellation_awaits_all_episode_cleanup(monkeypatch):
+    async def scenario():
+        all_started = asyncio.Event()
+        blocked = asyncio.Event()
+        episodes = []
+        cleaned = set()
+
+        async def fake_episode(agent, env):
+            index = len(episodes)
+            episodes.append(asyncio.current_task())
+            try:
+                if len(episodes) == 3:
+                    all_started.set()
+                await blocked.wait()
+            finally:
+                await asyncio.sleep(0)
+                cleaned.add(index)
+
+        monkeypatch.setattr(common, "run_episode", fake_episode)
+        collection = asyncio.create_task(
+            common.collect_group(
+                object(), Task("goal", "cancelled-group", 1), DummyEnv, 3,
+                agent_cls=DummyAgent,
+            )
+        )
+        try:
+            await asyncio.wait_for(all_started.wait(), timeout=2.0)
+            collection.cancel()
+            with pytest.raises(asyncio.CancelledError):
+                await collection
+            assert cleaned == {0, 1, 2}
+            assert all(task.done() for task in episodes)
+        finally:
+            collection.cancel()
+            await asyncio.gather(collection, return_exceptions=True)
+
+    asyncio.run(scenario())
+
+
+def test_async_trainer_fatal_episode_leaves_no_nested_rollouts(monkeypatch):
+    from types import SimpleNamespace
+
+    from scottyrl.config import ModelConfig, TrainConfig
+    from scottyrl.train.async_grpo import AsyncGRPOTrainer
+
+    async def scenario():
+        failure = RuntimeError("worker's nested episode failed")
+        siblings_started = asyncio.Event()
+        blocked = asyncio.Event()
+        episodes = []
+        cleaned = set()
+
+        async def fake_episode(agent, env):
+            index = len(episodes)
+            episodes.append(asyncio.current_task())
+            if index == 0:
+                await siblings_started.wait()
+                raise failure
+            try:
+                if len(episodes) == 3:
+                    siblings_started.set()
+                await blocked.wait()
+            finally:
+                await asyncio.sleep(0)
+                cleaned.add(index)
+
+        async def sampling_client(name):
+            return name
+
+        session = SimpleNamespace(new_sampling_client=sampling_client)
+        trainer = AsyncGRPOTrainer(
+            session, DummyEnv, [Task("goal", "a", 1)], [], ModelConfig(),
+            TrainConfig(
+                group_size=3, groups_per_batch=1, num_workers=1,
+                queue_capacity=1, num_steps=1, eval_every=0,
+            ),
+            SimpleNamespace(step_offset=0, log=lambda *args: None),
+        )
+        trainer.make_policy = lambda client: SimpleNamespace(name=client)
+        trainer.agent_cls = lambda: DummyAgent
+        monkeypatch.setattr(common, "run_episode", fake_episode)
+        try:
+            with pytest.raises(RuntimeError) as caught:
+                await asyncio.wait_for(trainer.train(), timeout=2.0)
+            assert caught.value is failure
+            assert cleaned == {1, 2}
+            assert len(episodes) == 3 and all(task.done() for task in episodes)
+        finally:
+            for task in episodes:
+                if not task.done():
+                    task.cancel()
+            await asyncio.gather(*episodes, return_exceptions=True)
+
+    asyncio.run(scenario())
+
+
 def test_groups_to_batch_empty_input_has_zero_counts_and_reward():
     sequences, stats = common.groups_to_batch([])
 

@@ -195,6 +195,80 @@ def test_collect_batch_samples_distinct_tasks_reproducibly_and_collects_them_con
         assert given_agent is agent_cls
 
 
+def test_collect_batch_failure_cancels_and_awaits_sibling_groups(monkeypatch):
+    async def scenario():
+        trainer, _, _ = make_trainer(tasks_per_batch=3)
+        failure = RuntimeError("one task group failed")
+        siblings_started = asyncio.Event()
+        blocked = asyncio.Event()
+        groups = []
+        cleaned = set()
+
+        async def collect_group(*args, **kwargs):
+            index = len(groups)
+            groups.append(asyncio.current_task())
+            if index == 0:
+                await siblings_started.wait()
+                raise failure
+            try:
+                if len(groups) == 3:
+                    siblings_started.set()
+                await blocked.wait()
+            finally:
+                await asyncio.sleep(0)
+                cleaned.add(index)
+
+        monkeypatch.setattr(sync_module, "collect_group", collect_group)
+        try:
+            with pytest.raises(RuntimeError) as caught:
+                await asyncio.wait_for(trainer.collect_batch(object()), timeout=2.0)
+            assert caught.value is failure
+            assert cleaned == {1, 2}
+            assert len(groups) == 3 and all(task.done() for task in groups)
+        finally:
+            for task in groups:
+                if not task.done():
+                    task.cancel()
+            await asyncio.gather(*groups, return_exceptions=True)
+
+    asyncio.run(scenario())
+
+
+def test_collect_batch_outer_cancellation_awaits_all_group_cleanup(monkeypatch):
+    async def scenario():
+        trainer, _, _ = make_trainer(tasks_per_batch=3)
+        all_started = asyncio.Event()
+        blocked = asyncio.Event()
+        groups = []
+        cleaned = set()
+
+        async def collect_group(*args, **kwargs):
+            index = len(groups)
+            groups.append(asyncio.current_task())
+            try:
+                if len(groups) == 3:
+                    all_started.set()
+                await blocked.wait()
+            finally:
+                await asyncio.sleep(0)
+                cleaned.add(index)
+
+        monkeypatch.setattr(sync_module, "collect_group", collect_group)
+        collection = asyncio.create_task(trainer.collect_batch(object()))
+        try:
+            await asyncio.wait_for(all_started.wait(), timeout=2.0)
+            collection.cancel()
+            with pytest.raises(asyncio.CancelledError):
+                await collection
+            assert cleaned == {0, 1, 2}
+            assert all(task.done() for task in groups)
+        finally:
+            collection.cancel()
+            await asyncio.gather(collection, return_exceptions=True)
+
+    asyncio.run(scenario())
+
+
 @pytest.mark.parametrize("method", ["grpo", "reinforce"])
 def test_build_batch_delegates_the_selected_advantage_rule_and_preserves_results(monkeypatch, method):
     trainer, _, logger = make_trainer(algo=method, group_size=1 if method == "reinforce" else 2)
